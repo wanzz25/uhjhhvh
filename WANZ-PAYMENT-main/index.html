@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>WEB PAYMENT WANZ</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+<link href="style.css" rel="stylesheet"/></head>
+<body>
+<div id="loaderWanz">
+<div class="spinnerWanz"></div>
+<h1>Loading</h1>
+<h2>⌛︎</h2>
+</div>
+<audio id="clickSound" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+<div class="app-frame">
+<div class="header-area">
+<div style="display:flex; gap:10px;">
+<div class="btn-icon ripple" id="btnMenu">
+<i class="ri-apps-2-line"></i>
+</div>
+<div class="btn-icon ripple" id="themeBtn">
+<i class="ri-sun-line"></i>
+</div>
+</div>
+<div class="logo-wanz">
+    WANZ<span>PAY 💳</span>
+</div>
+<div class="btn-icon ripple" onclick="toggleNotifPanel()">
+<i class="ri-notification-4-line"></i>
+<div class="notif-badge" id="notifBadge">0</div>
+</div>
+</div>
+<div class="content-area">
+<div class="profile-section">
+<img class="p-img" src="foto4.jpg"/>
+<div class="p-info">
+<h2 id="userName"></h2>
+<p><span class="status-dot"></span> Online &amp; Verified</p>
+<div class="social-bar">
+<a class="soc-icon ripple" href="https://instagram.com" onclick="playTick()" target="_blank">
+<i class="ri-instagram-fill"></i>
+</a>
+<a class="soc-icon ripple" href="https://telegram.org" onclick="playTick()" target="_blank">
+<i class="ri-telegram-fill"></i>
+</a>
+<a class="soc-icon ripple" href="https://linkedin.com" onclick="playTick()" target="_blank">
+<i class="ri-linkedin-fill"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="stats-box">
+<div class="stat"><h3>1.2K+</h3><small>Transaksi</small></div>
+<div class="stat"><h3>99.9%</h3><small>Success</small></div>
+<div class="stat"><h3>24/7</h3><small>Support</small></div>
+</div>
+<!-- POSTER -->
+<div class="poster-slider">
+<img class="poster-img active" src="poster1.jpg"/>
+</div>
+<!-- RUNNING TEXT -->
+<div class="marquee-container">
+<div class="marquee-text">
+        INFO: Pembayaran Otomatis DANA &amp; ShopeePay tersedia 24 Jam • Hubungi Admin jika ada kendala • Jangan lupa simpan bukti transfer.
+    </div>
+</div>
+<div class="menu-title">Main Service</div>
+<div class="menu-grid">
+<div class="menu-card card-qris-full ripple" onclick="openSheet('qris')">
+<div class="qris-left"><i class="ri-qr-scan-2-line"></i></div>
+<div class="qris-right">
+<h3>Scan QRIS</h3>
+<p>Instant Payment</p>
+</div>
+</div>
+<div class="menu-card ripple" onclick="openSheet('dana_only')">
+<div class="mc-icon" style="color:#10b981;"><i class="ri-wallet-3-fill"></i></div>
+<div class="mc-text">
+<h3>E-Wallet</h3>
+<p>Dana / OVO / GoPay</p>
+</div>
+</div>
+<div class="menu-card ripple" onclick="openSheet('bank')">
+<div class="mc-icon" style="color:#f59e0b;"><i class="ri-bank-card-fill"></i></div>
+<div class="mc-text">
+<h3>Transfer</h3>
+<p>Semua Bank</p>
+</div>
+</div>
+<div class="menu-card ripple" onclick="openSheet('pulsa')">
+<div class="mc-icon" style="color:#ef4444;"><i class="ri-smartphone-fill"></i></div>
+<div class="mc-text">
+<h3>Top Up</h3>
+<p>Pulsa All Op</p>
+</div>
+</div>
+<div class="menu-card ripple" onclick="openSheet('all')">
+<div class="mc-icon" style="color:#6366f1;"><i class="ri-grid-fill"></i></div>
+<div class="mc-text">
+<h3>Lainnya</h3>
+<p>Lihat Menu</p>
+</div>
+</div>
+</div>
+<div class="info-features">
+<div class="feat-item ripple" onclick="playTick()">
+<i class="ri-flashlight-fill feat-icon"></i>
+<div class="feat-text">
+<h5>Proses Cepat</h5>
+<p>Instant Process</p>
+</div>
+</div>
+<div class="feat-item ripple" onclick="playTick()">
+<i class="ri-shield-check-fill feat-icon"></i>
+<div class="feat-text">
+<h5>Aman 100%</h5>
+<p>Terverifikasi</p>
+</div>
+</div>
+<div class="feat-item ripple" onclick="playTick()">
+<i class="ri-customer-service-fill feat-icon"></i>
+<div class="feat-text">
+<h5>Admin 24/7</h5>
+<p>Siap Membantu</p>
+</div>
+</div>
+</div>
+<div class="promo-banner ripple">
+<h4>Promo Diskon 10%</h4>
+<p>Khusus pembeli yang sudah mencapai total Rp100.000 .</p>
+<i class="ri-coupon-3-line promo-deco"></i>
+</div>
+<div style="height:30px;"></div>
+</div>
+<div class="fab-container">
+<button class="btn-fab ripple" id="fabChat">
+<i class="ri-customer-service-2-fill"></i>
+</button>
+</div>
+<div class="chat-modal" id="chatWin">
+<div class="cm-header">
+<span>Live Support 👩‍💻</span>
+<i class="ri-close-line" id="closeChat" style="cursor:pointer; font-size:18px;"></i>
+</div>
+<div class="cm-body" id="chatBody">
+<div class="bubble b-bot">Halo! Ada yang bisa kami bantu🙏🏻😊?</div>
+</div>
+<div class="cm-footer">
+<button class="c-chip" onclick="sendChat('konfirmasi')">Konfirmasi</button>
+<button class="c-chip" onclick="sendChat('masalah')">Kendala</button>
+<button class="c-chip" onclick="sendChat('admin')">Admin</button>
+</div>
+</div>
+<div class="notif-panel" id="notifPanel">
+<div class="notif-box">
+<div class="nb-header">
+<h3>Notifikasi</h3>
+<i class="ri-close-circle-fill nb-close" onclick="toggleNotifPanel()"></i>
+</div>
+<div class="nb-body" id="notifList">
+<div class="empty-state">Belum ada aktivitas terbaru</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sheet-overlay" id="sheet">
+<div class="sheet-panel">
+<div style="width:40px; height:5px; background:#ccc; border-radius:10px; margin:0 auto 15px;"></div>
+<div style="text-align:center; margin-bottom:25px;">
+<h3 id="sheetTitle" style="color:#000; font-size:16px; font-weight:800;">Payment</h3>
+</div>
+<div id="sheetList"></div>
+<button class="ripple" id="btnCloseSheet" style="width:100%; padding:15px; border-radius:12px; border:none; background:#000; color:#fff; font-weight:700; margin-top:15px;">Tutup</button>
+</div>
+</div>
+
+<script src="script.js"></script></body>
+</html>
